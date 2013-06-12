@@ -1,0 +1,12 @@
+<loader version="1.0" >
+<application id="HelloMaps">
+<name>Hello World</name>
+<description>Hello World location display</description>
+<version>1.0.0.0</version>
+<vendor>My name</vendor>
+<fileset Java="1.45">
+<directory></directory>
+<files>HelloMaps.cod</files>
+</fileset>
+</application>
+</loader>

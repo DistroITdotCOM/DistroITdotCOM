@@ -1,0 +1,32 @@
+
+{
+    "id":"1149348459",
+    "name":"Achmad Zaki Mubarok",
+    "first_name":"Achmad",
+    "middle_name":"Zaki",
+    "last_name":"Mubarok",
+    "link":"https:\/\/www.facebook.com\/achmad.zaki.mubarok",
+    "username":"achmad.zaki.mubarok",
+    "hometown":{
+        "id":"103138949726557",
+        "name":"Gresik"
+    },
+    "location":{
+        "id":"108525715838806",
+        "name":"Malang"
+    },
+    "bio":"Follow me \u0040zaki_achmad\r\n\r\nhttp:\/\/twitter.com\/zaki_achmad\r\n\r\nBe different :)",
+    "quotes":"Temukan keunikan dari setiap orang (Achmad Zaki Mubarok)",
+    "gender":"male",
+    "religion":"\u0645\u0633\u0644\u0645",
+    "email":"bill\u0040distroit.com",
+    "timezone":7,
+    "locale":"en_US",
+    "languages":[{
+            "id":"105541139480550",
+            "name":"Indonesian"
+        }],
+    "verified":true,
+    "updated_time":"2013-02-03T03:51:10+0000"
+}
+

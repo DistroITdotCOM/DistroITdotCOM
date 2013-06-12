@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Multiple File Upload</title>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery.form.js"></script>
+<script type="text/javascript" src="jquery.MultiFile.js"></script>
+<script type="text/javascript">
+function updateResult(xml)
+{
+   if ($("status", xml).text() == "1")
+   {
+      $("file", xml).each(function(id){
+         file = $("file", xml).get(id);
+         tmp = "<tr><td>" + $("name", file).text()+ "</td>" +
+            "<td>" + $("type", file).text() + "</td>" +
+            "<td>" + $("size", file).text() + "</td></tr>";
+         $("#result").append(tmp);
+      });
+   }
+}
+$(document).ready(function(){
+   $("#frmUpload").ajaxForm({
+      dataType: "xml",
+      success: function(xml) {
+         updateResult(xml);
+         $("input:file").MultiFile("reset");
+      }
+   });
+});
+</script>
+</head>
+<body>
+<form id="frmUpload" method="POST" action="upload.php" enctype="multipart/form-data">
+<input type="file" name="file[]" class="multi" accept="jpg|pdf" maxlength="5" /><input type="submit" value="Upload" />
+</form>
+<h2>Daftar File</h2>
+<table id="result" border="1" width="100%" cellspacing="2"
+	cellpadding="3">
+	<tr>
+		<th>File</th>
+		<th>Tipe</th>
+		<th>Ukuran</th>
+	</tr>
+</table>
+</body>
+</html>

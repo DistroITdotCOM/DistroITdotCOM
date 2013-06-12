@@ -1,0 +1,11 @@
+<loader version="1.0" >
+<application id="Hello">
+<name>Hello World</name>
+<description>This is HelloWorld.</description>
+<version>1.0</version>
+<fileset Java="1.45">
+<directory></directory>
+<files>Hello.cod</files>
+</fileset>
+</application>
+</loader>

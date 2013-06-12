@@ -1,0 +1,30 @@
+<?php
+
+$lang['email_required'] = 'Alamat email harus diisi';
+$lang['email_valid'] = 'Alamat email harus benar';
+$lang['email_activation'] = 'Akun belum aktif. <a data-toggle="modal" href="#user-activate">Kirim email aktivasi?</a>';
+$lang['email_failed'] = 'Gagal login. <a data-toggle="modal" href="#user-forgot">Lupa password?</a>';
+$lang['form_login'] = 'Login khusus Anggota Aktif';
+$lang['email'] = 'Email Anda';
+$lang['password'] = 'Password';
+$lang['forgot_password'] = 'Lupa password';
+$lang['register'] = 'Daftar sebagai Anggota';
+$lang['login'] = 'Login Anggota';
+$lang['email_check'] = 'Alamat email sudah terdaftar';
+$lang['username_required'] = 'Nama anggota harus diisi';
+$lang['username_reserved'] = 'Nama anggota tidak boleh digunakan';
+$lang['username_already'] = 'Nama anggota sudah terdaftar';
+$lang['username_validate'] = 'Hanya diperbolehkan huruf, angka, dan dash';
+$lang['gender_required'] = 'Jenis kelamin harus diisi';
+$lang['phone_required'] = 'Nomer HP harus diisi';
+$lang['phone_digits'] = 'Harus diisi angka';
+$lang['form_register'] = 'Pendaftaran Anggota Baru';
+$lang['username'] = 'Nama Anggota';
+$lang['gender'] = 'Jenis Kelamin';
+$lang['select_gender'] = 'Pilih jenis kelamin';
+$lang['male'] = 'Laki-laki';
+$lang['female'] = 'Perempuan';
+$lang['hp'] = 'Nomer HP';
+$lang['email_check2'] = 'Alamat email tidak terdaftar';
+$lang['send'] = 'Kirim Email Aktivasi';
+$lang['send_email'] = 'Kirim Email';

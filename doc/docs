@@ -1,0 +1,121 @@
+Career
+1.Affiliate => http://domain.com/affiliate/id
+2.Reseller => http://domain.com/username
+3.Franchise => http://subdomain.domain.com/
+
+distroit.com redirectToRandom *.distroit.com
+www.distroit.com 
+
+Version
+CodeIgniter 2.1.3
+Bootstrap 2.3.1
+Jasny-Bootstrap 2.3.0-j5
+jQuery 1.9.1
+jQuery UI 1.10.1 Cupertino
+Underscore 1.4.4
+Backbone 0.9.10
+TimThumb 2.8.10
+Tinymce 3.5.8
+
+
+penambahan kolom payout dalam account role admin
+penambahan user pada project role admin
+penambahan user pada product role admin
+penambahan user pada weblog role admin
+delete user pada view project role admin
+
+8 domain indonesia
+17 domain international
+4 SSL
+7 hosting
+
+username "distroit" belum masuk ketika masih sepi
+banyak halaman kosong ketika masih sepi
+bertahap tapi langsung semua
+fokus produsen
+fokus mahasiswa komputer
+fokus universitas dan masyarakat bawah
+
+validate = url
+
+Changelog
+edit application folder > soft
+edit system folder > hard
+edit .htaccess
+edit index.php > production > 2 folder
+
+Fix Bugs and Features
+versi software
+
+home_view.php
+<!--<div id="tengah">
+    <div class="breadcrumb">
+        <h1>Project</h1>
+    </div>
+    <div class="row">
+        <div class="span6">
+            <div class="well">
+                <h2>Get Project</h2>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+        </div>/span
+        <div class="span6">
+            <div class="well">
+                <h2>Post Project</h2>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+        </div>/span
+    </div>/row
+    <div class="breadcrumb">
+        <h1>Career</h1>
+    </div>
+    <div class="row">
+        <div class="span4">
+            <div class="well">
+                <h2>Affiliate</h2>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+        </div>/span
+        <div class="span4">
+            <div class="well">
+                <h2>Reseller</h2>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+        </div>/span
+        <div class="span4">
+            <div class="well">
+                <h2>Franchise</h2>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+        </div>/span
+    </div>/row
+    <div class="breadcrumb">
+        <h1>Skill</h1>
+    </div>
+    <div class="row">
+        <div class="span3">
+            <div class="well">
+                <h2>Content Writer</h2>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+        </div>/span
+        <div class="span3">
+            <div class="well">
+                <h2>Graphic Designer</h2>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+        </div>/span
+        <div class="span3">
+            <div class="well">
+                <h2>Web Designer</h2>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+        </div>/span
+        <div class="span3">
+            <div class="well">
+                <h2>Web Developer</h2>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div>
+        </div>/span
+    </div>/row
+</div>-->

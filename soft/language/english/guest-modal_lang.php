@@ -1,0 +1,30 @@
+<?php
+
+$lang['email_required'] = 'Enter your email address';
+$lang['email_valid'] = 'Enter valid email address';
+$lang['email_activation'] = 'Need Activation Account. <a data-toggle="modal" href="#user-activate">Send Email Activation?</a>';
+$lang['email_failed'] = 'Login failed. <a data-toggle="modal" href="#user-forgot">Forgot password?</a>';
+$lang['form_login'] = 'Login for Returning User';
+$lang['email'] = 'Your Email';
+$lang['password'] = 'Password';
+$lang['forgot_password'] = 'Forgot password';
+$lang['register'] = 'Become a User';
+$lang['login'] = 'User Login';
+$lang['email_check'] = 'This email address is taken already';
+$lang['username_required'] = 'Enter your username';
+$lang['username_reserved'] = 'This username is reserved';
+$lang['username_already'] = 'This username is taken already';
+$lang['username_validate'] = 'Only letters, numbers, or dashes';
+$lang['gender_required'] = 'Enter your gender';
+$lang['phone_required'] = 'Enter your phone number';
+$lang['phone_digits'] = 'Require digits only';
+$lang['form_register'] = 'Register for New User';
+$lang['username'] = 'Username';
+$lang['gender'] = 'Gender';
+$lang['select_gender'] = 'Select Gender';
+$lang['male'] = 'Male';
+$lang['female'] = 'Female';
+$lang['hp'] = 'Your Phone Number';
+$lang['email_check2'] = 'This email address is not registered';
+$lang['send'] = 'Send Activation Email';
+$lang['send_email'] = 'Send Email';
