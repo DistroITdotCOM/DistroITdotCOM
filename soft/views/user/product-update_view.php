@@ -11,24 +11,6 @@ $product_price = $product->product_price;
         theme: "simple"
     });
     $(function() {
-        $(".ajaxproduct").click(function() {
-            var div = $(this).attr("class").split(' ')[1];
-            var ElementUrl = $(this).attr("asli");
-            var IdProduct = $(this).attr("idproduct");
-
-            $.ajax({
-                type: "POST",
-                data: "ajax=1&product_id=" + IdProduct,
-                url: ElementUrl,
-                beforeSend: function() {
-                    $('#' + div).html('<div style="text-align: center"><img src="' + loading_image_large + '"/></div>');
-                },
-                success: function(msg) {
-                    $('#' + div).html(msg);
-                }
-            });
-            return false;
-        });
         $("#product-update").validate({
             rules: {
                 name: {
@@ -54,11 +36,11 @@ $product_price = $product->product_price;
             },
             errorClass: "help-inline",
             errorElement: "span",
-            highlight: function(element, errorClass, validClass) {
+            highlight: function(element) {
                 $(element).parents('.control-group').addClass('error');
                 $(element).parents('.control-group').removeClass('success');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function(element) {
                 $(element).parents('.control-group').removeClass('error');
                 $(element).parents('.control-group').addClass('success');
             }
@@ -75,11 +57,11 @@ $product_price = $product->product_price;
             uploadtype: "image",
             name: "userfile2"
         });
-        $('input#commission').autoNumeric({aSep: '.', aDec: ',', vMax: '9999999999'});
-        $('input#price').autoNumeric({aSep: '.', aDec: ',', vMax: '9999999999'});
+        $('input#commission').autoNumeric({aSep: '.', aDec: ',', vMax: '1000000'});
+        $('input#price').autoNumeric({aSep: '.', aDec: ',', vMax: '1000000'});
     });
 </script>
-<form action="<?= base_url('user/product_update') ?>" id="product-update" method="post" enctype="multipart/form-data" class="form-horizontal">
+<form action="<?= site_url('user/product_update') ?>" id="product-update" method="post" enctype="multipart/form-data" class="form-horizontal">
     <input type="hidden" value="1" name="update" />
     <input type="hidden" value="<?= $product_id ?>" name="product_id" />
     <fieldset>
@@ -109,7 +91,7 @@ $product_price = $product->product_price;
                     ?>
                     <div class="fileupload<?= $key ?> fileupload-new fileupload" data-provides="fileupload">
                         <div class="fileupload-new thumbnail" style="width: 200px;">
-                            <img src="<?= base_url('upload/img/product') . "/" . $picture ?>">
+                            <img src="<?= base_url('upload/img/product/' . $picture) ?>">
                         </div>
                         <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                         <div>

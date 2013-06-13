@@ -1,4 +1,4 @@
-<form action="<?= base_url('order/update.html') ?>" method="post"> 
+<form action="<?= site_url('order/update') ?>" method="post"> 
     <table class="table table-striped table-bordered table-condensed">
         <thead>
             <tr>
@@ -15,7 +15,7 @@
                 <td>
                     <input type="text" style="width:30px" name="qty[]" value="<?= $value['qty'] ?>"/>
                 </td>
-                <td><a href="<?= base_url('product/detail') . '/' . $value['id'] . '/' . url_title($value['name']) . '.html' ?>" target="_blank"><?= $value['name'] ?></a></td>
+                <td><a href="<?= site_url('product/detail') . '/' . $value['id'] . '/' . url_title($value['name']) ?>" target="_blank"><?= $value['name'] ?></a></td>
                 <td>Rp <?= number_format($value['price'], 0, ',', '.') ?></td>
                 <td>Rp <?= number_format($value['subtotal'], 0, ',', '.') ?></td>
             </tr>
@@ -30,7 +30,7 @@
     </table>
     <p>
         <button type="submit" class="btn btn-primary"><?= $this->lang->line('update') ?></button>&nbsp;
-        <a class="btn btn-primary" href="<?= base_url('order/checkout.html') ?>"><?= $this->lang->line('checkout') ?></a>
+        <a class="btn btn-primary" href="<?= site_url('order/checkout') ?>"><?= $this->lang->line('checkout') ?></a>
     </p>
     <p>
         <small><?= $this->lang->line('note') ?></small>

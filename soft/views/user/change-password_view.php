@@ -4,7 +4,7 @@
         $.validator.addMethod("passwordCheck", function(value) {
             $.ajax({
                 type: "POST",
-                url: "<?= base_url('validation/password_check.html') ?>",
+                url: "<?= site_url('validation/password_check') ?>",
                 data: "password=" + value + "&user_id=" +<?= $this->session->userdata('user_id') ?> + "",
                 dataType: "html",
                 success: function(msg) {
@@ -57,7 +57,7 @@
     });
 </script>
 <? $this->load->view('user/main-menu_view') ?>
-<form action="<?= base_url('user/change_password.html') ?>" id="form-change" method="post" class="form-horizontal">
+<form action="<?= site_url('user/change_password') ?>" id="form-change" method="post" class="form-horizontal">
     <input type="hidden" value="1" name="update" />
     <fieldset>
         <div class="control-group">

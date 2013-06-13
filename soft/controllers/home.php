@@ -8,7 +8,6 @@ class Home extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->session->set_flashdata('redirectToCurrent', current_url());
-
         $subdomain_arr = explode('.', $_SERVER['HTTP_HOST'], 2);
         $this->session->set_userdata('affiliate', $this->db->from('user')->where('user_name', $subdomain_arr[0])->get()->row()->user_id);
     }
@@ -18,7 +17,6 @@ class Home extends CI_Controller {
         $data['component'] = 'home/index_view';
         $data['rs_component'] = $this->Home_model->index();
         $data['notification'] = $this->session->flashdata('notification');
-
         $param['title'] = $this->lang->line('home');
         $param['arrCss'] = array(
             '../plugin/bootstrap/css/bootstrap.min.css',
@@ -44,12 +42,10 @@ class Home extends CI_Controller {
         } else {
             $data['keyword'] = $this->session->userdata('searching');
         }
-
         $this->lang->load('home/search', $this->session->userdata('lang'));
         $data['component'] = 'home/search_view';
         $data['rs_component'] = $this->Home_model->search($data['keyword']);
         $data['notification'] = $this->session->flashdata('notification');
-
         $param['title'] = $this->session->userdata('searching');
         $param['arrCss'] = array(
             '../plugin/bootstrap/css/bootstrap.min.css',

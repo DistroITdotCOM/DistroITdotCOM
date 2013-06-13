@@ -19,7 +19,7 @@ $user_phone = !empty($user->user_phone) ? $user->user_phone : $this->lang->line(
         <li class="nav-header"><i class="icon-bell"></i><?= $this->lang->line('phone') ?></li>
         <li><?= $user_phone ?></li>
         <? if (is_profile() == TRUE) { ?>
-            <li class="nav-header"><a href="<?= base_url('user/account.html') ?>"><i class="icon-cog"></i> <?= $this->lang->line('account_update') ?></a></li>
+            <li class="nav-header"><a href="<?= site_url('user/account') ?>"><i class="icon-cog"></i> <?= $this->lang->line('account_update') ?></a></li>
             <? } ?>
     </ul>
 </div>

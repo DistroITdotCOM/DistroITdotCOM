@@ -2,9 +2,9 @@
     <div class="row">
         <ul style="margin-top: 10px;margin-left: 30px;float:left">
             <? if ($this->session->userdata('lang') == 'english') { ?>
-                <li>Ubah bahasa : <a href="<?= base_url('home/change_lang') ?>">Indonesia</a></li>
+                <li>Ubah bahasa : <a href="<?= site_url('home/change_lang') ?>">Indonesia</a></li>
             <? } else { ?>
-                <li>Change language : <a href="<?= base_url('home/change_lang') ?>">English</a></li>
+                <li>Change language : <a href="<?= site_url('home/change_lang') ?>">English</a></li>
             <? } ?>
         </ul>
         <!--        <ul style="width: 305px;margin-top: 10px;float:right">

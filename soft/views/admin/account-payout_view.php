@@ -25,8 +25,7 @@
         $('input#asset').autoNumeric({aSep: '.', aDec: ',', vMax: '9999999999'});
     });
 </script>
-
-<form action="<?= base_url('admin/account_payout.html') ?>" id="form-payout" method="post" class="form-horizontal">
+<form action="<?= site_url('admin/account_payout') ?>" id="form-payout" method="post" class="form-horizontal">
     <input type="hidden" value="1" name="ajax" />
     <input type="hidden" value="1" name="update" />
     <input type="hidden" value="<?= $user_id ?>" name="user" />

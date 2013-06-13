@@ -11,7 +11,6 @@ $product_commission = $product->product_commission;
         $("#order-add").submit(function() {
             var id = $(this).find('input[name=product_id]').val();
             var qty = $(this).find('input[name=quantity]').val();
-
             $.post(site + "order/add", {
                 product_id: id,
                 quantity: qty,
@@ -19,7 +18,7 @@ $product_commission = $product->product_commission;
             },
             function(data) {
                 if (data === 'true') {
-                    window.location = site + "order/display";
+                    window.location = site + "order/display.html";
                 }
             });
             return false;
@@ -36,33 +35,28 @@ $product_commission = $product->product_commission;
     img{
         max-width: none;
     }
-
     #thumblist{
         text-align: center;
     }
-
     #thumblist ul{
         margin: 0;
         display: inline-block;
     }
-
     #thumblist ul li{
         float:left;
         margin-right:2px;
         list-style:none;
     }
-
     #thumblist ul li a{
         display:block;
         border:1px solid #CCC;
     }
-
     #thumblist ul li a.zoomThumbActive{
         border:1px solid red;
     }
 </style>
 <div class="row">
-    <div class="span3">
+    <div class="span3" style="margin-bottom: 10px">
         <div id="thumblist" class="thumbnail">
             <?
             foreach ($pict as $key => $value) {
@@ -90,7 +84,7 @@ $product_commission = $product->product_commission;
         </div>
         <br>
         <div class="well" style="text-align: center;padding: 8px 0;">
-            <form action="<?= base_url('order/add') ?>" id="order-add" method="post">
+            <form action="<?= site_url('order/add') ?>" id="order-add" method="post">
                 <h4><?= $this->lang->line('quantity') ?></h4>
                 <input type="hidden" name="product_id" value="<?= $product_id ?>" />
                 <input type="text" style="width:30px" name="quantity" value="1"/><br/>	
@@ -119,7 +113,7 @@ $product_commission = $product->product_commission;
                 <img src="<?= base_url('res/timthumb.php?src=' . base_url('upload/img/product/' . $value->pict_name) . '&w=270') ?>" alt="">
                 <div class="caption">
                     <h5><?= $value->product_name ?></h5>
-                    <p><a class="btn" href="<?= base_url('product/detail/' . $value->product_id . '/' . url_title($value->product_name) . '.html') ?>"><?= $this->lang->line('view_details') ?></a></p>
+                    <p><a class="btn" href="<?= site_url('product/detail/' . $value->product_id . '/' . url_title($value->product_name)) ?>"><?= $this->lang->line('view_details') ?></a></p>
                 </div>
             </div>
             <br>

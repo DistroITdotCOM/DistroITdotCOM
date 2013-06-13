@@ -10,7 +10,6 @@ class User extends CI_Controller {
         $this->session->keep_flashdata('notification');
         if ($this->session->userdata('Clogin') != TRUE)
             redirect();
-        $this->lang->load('user', $this->session->userdata('lang'));
         $this->session->set_flashdata('redirectToCurrent', current_url());
     }
 
@@ -27,14 +26,11 @@ class User extends CI_Controller {
     function account() {
         if ($this->input->post('update') == 1) {
             if (!empty($_FILES['userfile']['name'])) {
-
                 $config['upload_path'] = './upload/img/pict/';
                 $config['allowed_types'] = 'png|jpg|jpeg|gif';
                 $config['remove_spaces'] = true;
                 $config['max_size'] = 700;
-
                 $this->load->library('upload', $config);
-
                 if ($this->upload->do_upload()) {
                     $user_pict = $this->upload->file_name;
                     $this->upload->data();
@@ -50,16 +46,13 @@ class User extends CI_Controller {
             $user_email = $this->input->post('email');
             $user_gender = $this->input->post('gender');
             $user_phone = $this->input->post('phone');
-
             $this->User_model->account_update($user_id, $user_name, $user_email, $user_pict, $user_gender, $user_phone);
             header('Location: ' . true_url($user_name));
         }
-
         $this->lang->load('user/account', $this->session->userdata('lang'));
         $data['component'] = 'user/account_view';
         $data['rs_component'] = $this->User_model->account($this->session->userdata('user_id'));
         $data['notification'] = $this->session->flashdata('notification');
-
         $param['title'] = $this->lang->line('account');
         $param['arrCss'] = array(
             '../plugin/bootstrap/css/bootstrap.min.css',
@@ -88,12 +81,10 @@ class User extends CI_Controller {
             $this->User_model->change_password($user_id, $user_password);
             redirect('auth/logout');
         }
-
         $this->lang->load('user/change-password', $this->session->userdata('lang'));
         $data['component'] = 'user/change-password_view';
         $data['rs_component'] = '';
         $data['notification'] = $this->session->flashdata('notification');
-
         $param['title'] = $this->lang->line('change_password');
         $param['arrCss'] = array(
             '../plugin/bootstrap/css/bootstrap.min.css',
@@ -138,12 +129,10 @@ class User extends CI_Controller {
         $config['num_links'] = 2;
         $this->pagination->initialize($config);
         $data['number'] = $this->uri->segment(3, 0);
-
         $this->lang->load('user/career', $this->session->userdata('lang'));
         $data['component'] = 'user/career_view';
         $data['rs_component'] = $this->User_model->career($this->session->userdata('user_id'), $this->uri->segment(3, 0), $config['per_page']);
         $data['notification'] = $this->session->flashdata('notification');
-
         $param['title'] = $this->lang->line('career');
         $param['arrCss'] = array(
             '../plugin/bootstrap/css/bootstrap.min.css',
@@ -183,12 +172,10 @@ class User extends CI_Controller {
         $config['uri_segment'] = 3;
         $config['num_links'] = 2;
         $this->pagination->initialize($config);
-
         $this->lang->load('user/product', $this->session->userdata('lang'));
         $data['component'] = 'user/product_view';
         $data['rs_component'] = $this->User_model->product($this->session->userdata('user_id'), $this->uri->segment(3, 0), $config['per_page']);
         $data['notification'] = $this->session->flashdata('notification');
-
         $param['title'] = $this->lang->line('product');
         $param['arrCss'] = array(
             '../plugin/bootstrap/css/bootstrap.min.css',
@@ -220,7 +207,6 @@ class User extends CI_Controller {
                 $config['allowed_types'] = 'png|jpg|jpeg|gif';
                 $config['remove_spaces'] = true;
                 $this->load->library('upload', $config);
-
                 if ($this->upload->do_upload('userfile0')) {
                     $pict_name[0] = $this->upload->file_name;
                     $this->upload->data();
@@ -233,7 +219,6 @@ class User extends CI_Controller {
                 $config['allowed_types'] = 'png|jpg|jpeg|gif';
                 $config['remove_spaces'] = true;
                 $this->load->library('upload', $config);
-
                 if ($this->upload->do_upload('userfile1')) {
                     $pict_name[1] = $this->upload->file_name;
                     $this->upload->data();
@@ -246,7 +231,6 @@ class User extends CI_Controller {
                 $config['allowed_types'] = 'png|jpg|jpeg|gif';
                 $config['remove_spaces'] = true;
                 $this->load->library('upload', $config);
-
                 if ($this->upload->do_upload('userfile2')) {
                     $pict_name[2] = $this->upload->file_name;
                     $this->upload->data();
@@ -256,7 +240,6 @@ class User extends CI_Controller {
             }
             $product_commission = reverse_number($this->input->post('commission'));
             $product_price = reverse_number($this->input->post('price'));
-
             $this->User_model->product_insert($user_id, $product_name, $product_desc, $product_commission, $product_price, $pict_name);
             redirect('user/product');
         }
@@ -264,25 +247,19 @@ class User extends CI_Controller {
         $data['component'] = 'user/product-insert_view';
         $data['rs_component'] = '';
         $data['notification'] = $this->session->flashdata('notification');
-
-        $param['title'] = $this->lang->line('project_post');
+        $param['title'] = $this->lang->line('product_post');
         $param['arrCss'] = array(
             '../plugin/bootstrap/css/bootstrap.min.css',
             '../plugin/bootstrap/css/bootstrap-responsive.min.css',
-            '../plugin/bootstrap-notify-1.0.0/css/styles/alert-blackgloss.css',
-            '../plugin/bootstrap-notify-1.0.0/css/bootstrap-notify.css',
             'style.css',
             '../plugin/jasny-bootstrap/css/jasny-bootstrap.min.css',
-            '../plugin/jasny-bootstrap/css/jasny-bootstrap-responsive.min.css',
-            '../plugin/jquery-ui-1.10.1.custom/css/cupertino/jquery-ui-1.10.1.custom.min.css');
+            '../plugin/jasny-bootstrap/css/jasny-bootstrap-responsive.min.css');
         $param['arrJs'] = array();
         $param['arrPlugin'] = array(
             'jquery.min.js',
             'bootstrap/js/bootstrap.min.js',
-            'bootstrap-notify-1.0.0/js/bootstrap-notify.js',
             'jquery.validate.min.js',
             'jasny-bootstrap/js/jasny-bootstrap.min.js',
-            'jquery-ui-1.10.1.custom/js/jquery-ui-1.10.1.custom.min.js',
             'tinymce/jscripts/tiny_mce/tiny_mce.js',
             'autoNumeric.js');
         $this->load->library('Header_lib', $param);
@@ -298,13 +275,11 @@ class User extends CI_Controller {
             $product_id = $this->input->post('product_id');
             $product_name = $this->input->post('name');
             $product_desc = $this->input->post('pdetail');
-
             if (!empty($_FILES['userfile0']['name'])) {
                 $config['upload_path'] = './upload/img/product/';
                 $config['allowed_types'] = 'png|jpg|jpeg|gif';
                 $config['remove_spaces'] = true;
                 $this->load->library('upload', $config);
-
                 if ($this->upload->do_upload('userfile0')) {
                     $pict_name[0] = $this->upload->file_name;
                     $this->upload->data();
@@ -322,7 +297,6 @@ class User extends CI_Controller {
                 $config['allowed_types'] = 'png|jpg|jpeg|gif';
                 $config['remove_spaces'] = true;
                 $this->load->library('upload', $config);
-
                 if ($this->upload->do_upload('userfile1')) {
                     $pict_name[1] = $this->upload->file_name;
                     $this->upload->data();
@@ -340,7 +314,6 @@ class User extends CI_Controller {
                 $config['allowed_types'] = 'png|jpg|jpeg|gif';
                 $config['remove_spaces'] = true;
                 $this->load->library('upload', $config);
-
                 if ($this->upload->do_upload('userfile2')) {
                     $pict_name[2] = $this->upload->file_name;
                     $this->upload->data();
@@ -355,33 +328,26 @@ class User extends CI_Controller {
             }
             $product_commission = reverse_number($this->input->post('commission'));
             $product_price = reverse_number($this->input->post('price'));
-
             $this->User_model->product_update($product_id, $product_name, $product_desc, $product_commission, $product_price, $pict_name);
-            redirect('user/product');
+            redirect('product/detail/' . $product_id . '/' . url_title($product_name));
         }
         $this->lang->load('user/product-update', $this->session->userdata('lang'));
         $data['component'] = 'user/product-update_view';
         $data['rs_component'] = $this->User_model->product_get_update($this->session->userdata('user_id'), $this->uri->segment(3, 0));
         $data['notification'] = $this->session->flashdata('notification');
-
-        $param['title'] = $this->lang->line('product_post');
+        $param['title'] = $this->lang->line('product_edit') . '-' . $data['rs_component']['product']->product_name;
         $param['arrCss'] = array(
             '../plugin/bootstrap/css/bootstrap.min.css',
             '../plugin/bootstrap/css/bootstrap-responsive.min.css',
-            '../plugin/bootstrap-notify-1.0.0/css/styles/alert-blackgloss.css',
-            '../plugin/bootstrap-notify-1.0.0/css/bootstrap-notify.css',
             'style.css',
             '../plugin/jasny-bootstrap/css/jasny-bootstrap.min.css',
-            '../plugin/jasny-bootstrap/css/jasny-bootstrap-responsive.min.css',
-            '../plugin/jquery-ui-1.10.1.custom/css/cupertino/jquery-ui-1.10.1.custom.min.css');
+            '../plugin/jasny-bootstrap/css/jasny-bootstrap-responsive.min.css');
         $param['arrJs'] = array();
         $param['arrPlugin'] = array(
             'jquery.min.js',
             'bootstrap/js/bootstrap.min.js',
-            'bootstrap-notify-1.0.0/js/bootstrap-notify.js',
             'jquery.validate.min.js',
             'jasny-bootstrap/js/jasny-bootstrap.min.js',
-            'jquery-ui-1.10.1.custom/js/jquery-ui-1.10.1.custom.min.js',
             'tinymce/jscripts/tiny_mce/tiny_mce.js',
             'autoNumeric.js');
         $this->load->library('Header_lib', $param);
@@ -392,6 +358,10 @@ class User extends CI_Controller {
     function product_delete() {
         $this->User_model->product_delete($this->session->userdata('user_id'), $this->uri->segment(3, 0));
         redirect('user/product');
+    }
+
+    function address() {
+        
     }
 
 }

@@ -108,7 +108,7 @@ class User_model extends CI_Model {
 
     function product_get_update($user_id, $product_id) {
         $sql_product = "SELECT * FROM product WHERE product_id = {$this->db->escape($product_id)} and user_user_id = {$this->db->escape($user_id)}";
-        $sql_pict = "SELECT * FROM pict WHERE product_product_id = {$this->db->escape($product_id)}";
+        $sql_pict = "SELECT * FROM pict WHERE product_product_id = {$this->db->escape($product_id)} ORDER BY pict_name ASC";
 
         $query_product = $this->db->query($sql_product);
         if ($query_product->num_rows() < 1) {

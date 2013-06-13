@@ -1,10 +1,8 @@
 <?php
 
 $lang['pict'] = 'Foto';
-$lang['pict_select'] = 'Pilih gambar';
-$lang['pict_change'] = 'Ganti';
-$lang['pict_remove'] = 'Hapus';
-$lang['pict_note'] = 'Ukuran file maksimal 700k. JPG, GIF, PNG.<br>Butuh bantuan mengunggah gambar? <a href="#" target="_blank">Pelajari lebih lanjut</a><br>';
+
+
 $lang['save'] = 'Simpan';
 $lang['gain'] = 'Laba Penjualan';
 $lang['all'] = 'Semua Anggota';
@@ -29,7 +27,6 @@ $lang['invoice_date'] = 'Tanggal Faktur';
 $lang['invoice_status'] = 'Status Faktur';
 $lang['paid'] = 'Lunas';
 $lang['unpaid'] = 'Belum lunas';
-$lang['action'] = 'Aksi';
 $lang['detail'] = 'Detil';
 $lang['payment_detail'] = 'Silahkan lakukan pembayaran di salah satu rekening berikut';
 $lang['payment_mandiri'] = 'Bank Mandiri KCP Gresik, No. Rekening 14-0000-6066-758 a.n. Achmad Bashori';
@@ -55,15 +52,7 @@ $lang['state'] = 'Provinsi';
 $lang['zip'] = 'Kode pos';
 $lang['invoice'] = 'Cetak Faktur';
 $lang['any_order'] = 'Anda belum memesan produk';
-$lang['product_delete'] = 'Apakah Anda yakin ingin menghapus produk ini?';
-$lang['product_post'] = 'Pasang Produk Baru';
-$lang['product_id'] = 'ID Produk';
-$lang['product_name'] = 'Nama Produk';
-$lang['product_commission'] = 'Komisi';
-$lang['product_price'] = 'Harga';
 $lang['view'] = 'Lihat';
-$lang['edit'] = 'Ubah';
-$lang['delete'] = 'Hapus';
 $lang['account'] = 'Akun';
 $lang['change_password'] = 'Ubah Password';
 $lang['project'] = 'Proyek';
@@ -71,7 +60,6 @@ $lang['career'] = 'Afiliasi';
 $lang['skill'] = 'Keahlian';
 $lang['order_profile'] = 'Pengiriman';
 $lang['order'] = 'Faktur';
-$lang['product'] = 'Produk';
 $lang['weblog'] = 'WebLOG';
 $lang['project_name'] = 'Nama Proyek';
 $lang['started'] = 'Mulai';
@@ -84,14 +72,12 @@ $lang['project_delete'] = 'Apakah Anda yakin ingin menghapus proyek ini?';
 $lang['weblog_delete'] = 'Apakah Anda yakin ingin menghapus weblog ini?';
 $lang['weblog_post'] = 'Pasang WebLOG Baru';
 $lang['weblog_title'] = 'Judul';
-$lang['product_detail'] = 'Deskripsi detil produk Anda';
-$lang['product_pict'] = 'Penampakan Gambar Produk';
-$lang['submit'] = 'Pasang';
-$lang['update'] = 'Ubah';
-$lang['cancel'] = 'Batal';
-$lang['product_name_required'] = 'Nama Produk harus diisi';
-$lang['product_commission_required'] = 'Komisi harus diisi';
-$lang['product_price_required'] = 'Harga harus diisi';
+
+
+
+
+
+
 $lang['bid'] = 'Tawaran Harga';
 $lang['back'] = '&larr; Kembali';
 $lang['project_not'] = 'Belum ada yang mengajukan penawaran harga pada proyek ini';

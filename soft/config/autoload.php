@@ -118,8 +118,7 @@ $autoload['model'] = array(
     'Order_model',
     'Product_model',
     'Auth_model',
-    'Profile_model',
-    'Xxx_model');
+    'Profile_model');
 
 
 /* End of file autoload.php */

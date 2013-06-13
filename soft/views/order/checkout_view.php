@@ -74,10 +74,9 @@
         });
         function submitFormGuest(form) {
             var strData = $(form).serialize();
-
             $.ajax({
-                type: 'POST',
-                url: '<?= base_url('order/invoice_print') ?>',
+                type: "POST",
+                url: "<?= site_url('order/invoice_print') ?>",
                 data: strData,
                 dataType: "json",
                 beforeSend: function() {
@@ -93,10 +92,9 @@
         ;
     });
 </script>
-
 <div class="row">
     <div class="span12">
-        <form action="<?= base_url('order/invoice_print') ?>" id="guest-checkout" method="post" class="form-horizontal">
+        <form action="<?= site_url('order/invoice_print') ?>" id="guest-checkout" method="post" class="form-horizontal">
             <input type="hidden" name="ajax" value="1">
             <fieldset><legend><?= $this->lang->line('form_buyer') ?></legend>
                 <div class="control-group">

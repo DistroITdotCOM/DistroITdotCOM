@@ -4,7 +4,7 @@ $pict = !empty($user->user_pict) ? $user->user_pict : '../no-img.jpg';
 ?>
 <script>
     $(function() {
-        $("#content").load('<?= base_url('profile/info.html') ?>', {ajax: 1});
+        $("#content").load('<?= site_url('profile/info') ?>', {ajax: 1});
         $("#myTab a").click(function() {
             var $this = $(this);
             $this.parent().siblings().removeClass('active');
@@ -33,9 +33,9 @@ $pict = !empty($user->user_pict) ? $user->user_pict : '../no-img.jpg';
         </div>
         <br>
         <ul id="myTab" class="nav nav-pills nav-stacked">
-            <li class="active"><a href="<?= base_url('profile/info.html') ?>">Info</a></li>
-            <li><a href="<?= base_url('profile/product.html') ?>"><?= $this->lang->line('product') ?></a></li>
-            <li><a href="<?= base_url('profile/location.html') ?>"><?= $this->lang->line('location') ?></a></li>
+            <li class="active"><a href="<?= site_url('profile/info') ?>">Info</a></li>
+            <li><a href="<?= site_url('profile/product') ?>"><?= $this->lang->line('product') ?></a></li>
+            <li><a href="<?= site_url('profile/location') ?>"><?= $this->lang->line('location') ?></a></li>
         </ul>
     </div>
     <div class="span9">

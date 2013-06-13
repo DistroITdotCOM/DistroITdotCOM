@@ -1,10 +1,8 @@
 <?php
 
 $lang['pict'] = 'Picture';
-$lang['pict_select'] = 'Select image';
-$lang['pict_change'] = 'Change';
-$lang['pict_remove'] = 'Remove';
-$lang['pict_note'] = 'Maximum size of 700k. JPG, GIF, PNG.<br>Need help uploading an image? <a href="#" target="_blank">Learn more</a>.<br>';
+
+
 $lang['save'] = 'Save';
 $lang['gain'] = 'Gain on Sale';
 $lang['all'] = 'All Members';
@@ -29,7 +27,6 @@ $lang['invoice_date'] = 'Invoice Date';
 $lang['invoice_status'] = 'Invoice Status';
 $lang['paid'] = 'Paid';
 $lang['unpaid'] = 'Unpaid';
-$lang['action'] = 'Action';
 $lang['detail'] = 'Detail';
 $lang['quantity'] = 'Quantity';
 $lang['payment_detail'] = 'Please make payment in one of the following accounts';
@@ -55,15 +52,7 @@ $lang['state'] = 'State/Region/Province';
 $lang['zip'] = 'Zip';
 $lang['invoice'] = 'Invoice Print';
 $lang['any_order'] = 'You don\'t have any order yet';
-$lang['product_delete'] = 'Are you sure you want to delete this product?';
-$lang['product_post'] = 'Post New Product';
-$lang['product_id'] = 'Product ID';
-$lang['product_name'] = 'Product Name';
-$lang['product_commission'] = 'Product Commission';
-$lang['product_price'] = 'Product Price';
 $lang['view'] = 'View';
-$lang['edit'] = 'Edit';
-$lang['delete'] = 'Delete';
 $lang['account'] = 'Account';
 $lang['change_password'] = 'Change Password';
 $lang['project'] = 'Project';
@@ -71,7 +60,6 @@ $lang['career'] = 'Career';
 $lang['skill'] = 'Skill';
 $lang['order_profile'] = 'Order Profile';
 $lang['order'] = 'Order';
-$lang['product'] = 'Product';
 $lang['weblog'] = 'WebLOG';
 $lang['project_name'] = 'Project Name';
 $lang['started'] = 'Started';
@@ -84,14 +72,12 @@ $lang['project_delete'] = 'Are you sure you want to delete this project?';
 $lang['weblog_delete'] = 'Are you sure you want to delete this weblog?';
 $lang['weblog_post'] = 'Post New WebLOG';
 $lang['weblog_title'] = 'Title';
-$lang['product_detail'] = 'Describe Your Product in Detail';
-$lang['product_pict'] = 'Product Picture';
-$lang['submit'] = 'Submit';
-$lang['update'] = 'Update';
-$lang['cancel'] = 'Cancel';
-$lang['product_name_required'] = 'Enter your Product Name';
-$lang['product_commission_required'] = 'Enter your Product Commission for Affiliate';
-$lang['product_price_required'] = 'Enter your Product Price';
+
+
+
+
+
+
 $lang['bid'] = 'Bid';
 $lang['back'] = '&larr; Back';
 $lang['project_not'] = 'No one bid this project';

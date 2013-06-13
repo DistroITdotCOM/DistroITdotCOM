@@ -9,7 +9,7 @@ class Admin extends CI_Controller {
         parent::__construct();
         if ($this->session->userdata('user_role') != 1)
             redirect();
-        $this->lang->load('admin', $this->session->userdata('lang'));
+//        $this->lang->load('admin', $this->session->userdata('lang'));
         $this->session->set_flashdata('redirectToCurrent', current_url());
     }
 

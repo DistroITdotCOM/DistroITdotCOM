@@ -30,8 +30,8 @@
         function submitFormLogin(form) {
             var strData = $(form).serialize();
             $.ajax({
-                type: 'POST',
-                url: '<?= base_url('auth/login') ?>',
+                type: "POST",
+                url: "<?= site_url('auth/login') ?>",
                 data: strData,
                 dataType: "json",
                 success: function(msg) {
@@ -51,7 +51,7 @@
     });
 </script>
 <div id="user-login" class="modal hide fade" style="display: none; ">
-    <form action="<?= base_url('auth/login') ?>" id="form-login" method="post" class="form-horizontal">
+    <form action="<?= site_url('auth/login') ?>" id="form-login" method="post" class="form-horizontal">
         <fieldset> 
             <div class="modal-header">
                 <a href="#" class="close" data-dismiss="modal">&times;</a>
@@ -88,7 +88,7 @@
         $.validator.addMethod("emailCheckReg", function(value) {
             $.ajax({
                 type: "POST",
-                url: "<?= base_url('validation/email_check') ?>",
+                url: "<?= site_url('validation/email_check') ?>",
                 data: "email=" + value + "&id=1",
                 dataType: "html",
                 success: function(msg) {
@@ -101,7 +101,7 @@
         $.validator.addMethod("usernameCheck", function(value) {
             $.ajax({
                 type: "POST",
-                url: "<?= base_url('validation/username_check') ?>",
+                url: "<?= site_url('validation/username_check') ?>",
                 data: "username=" + value + "&user_id=#",
                 dataType: "html",
                 success: function(msg) {
@@ -114,7 +114,7 @@
         $.validator.addMethod("usernameReserved", function(value) {
             $.ajax({
                 type: "POST",
-                url: "<?= base_url('validation/username_reserved') ?>",
+                url: "<?= site_url('validation/username_reserved') ?>",
                 data: "username=" + value,
                 dataType: "html",
                 success: function(msg) {
@@ -184,8 +184,8 @@
         function submitFormReg(form) {
             var strData = $(form).serialize();
             $.ajax({
-                type: 'POST',
-                url: '<?= base_url('auth/register') ?>',
+                type: "POST",
+                url: "<?= site_url('auth/register') ?>",
                 data: strData,
                 dataType: "json",
                 success: function(msg) {
@@ -199,7 +199,7 @@
     });
 </script>
 <div id="user-register" class="modal hide fade" style="display: none; ">
-    <form action="<?= base_url('auth/register') ?>" id="form-reg" method="post" class="form-horizontal">
+    <form action="<?= site_url('auth/register') ?>" id="form-reg" method="post" class="form-horizontal">
         <fieldset>
             <div class="modal-header">
                 <a href="#" class="close" data-dismiss="modal">&times;</a>
@@ -247,7 +247,7 @@
         $.validator.addMethod("emailCheck", function(value) {
             $.ajax({
                 type: "POST",
-                url: "<?= base_url('validation/email_check') ?>",
+                url: "<?= site_url('validation/email_check') ?>",
                 data: "email=" + value + "&id=2",
                 dataType: "html",
                 success: function(msg) {
@@ -288,8 +288,8 @@
         function submitFormForgot(form) {
             var strData = $(form).serialize();
             $.ajax({
-                type: 'POST',
-                url: '<?= base_url('auth/forgot') ?>',
+                type: "POST",
+                url: "<?= site_url('auth/forgot') ?>",
                 data: strData,
                 dataType: "json",
                 success: function(msg) {
@@ -303,7 +303,7 @@
     });
 </script>
 <div id="user-forgot" class="modal hide fade" style="display: none; ">
-    <form action="<?= base_url('auth/forgot') ?>" id="form-forgot" method="post" class="form-horizontal">
+    <form action="<?= site_url('auth/forgot') ?>" id="form-forgot" method="post" class="form-horizontal">
         <fieldset>
             <div class="modal-header">
                 <a href="#" class="close" data-dismiss="modal">&times;</a>
@@ -329,7 +329,7 @@
         $.validator.addMethod("emailCheck", function(value) {
             $.ajax({
                 type: "POST",
-                url: "<?= base_url('validation/email_check') ?>",
+                url: "<?= site_url('validation/email_check') ?>",
                 data: "email=" + value + "&id=2",
                 dataType: "html",
                 success: function(msg) {
@@ -370,8 +370,8 @@
         function submitFormActivate(form) {
             var strData = $(form).serialize();
             $.ajax({
-                type: 'POST',
-                url: '<?= base_url('auth/send') ?>',
+                type: "POST",
+                url: "<?= site_url('auth/send') ?>",
                 data: strData,
                 dataType: "json",
                 success: function(msg) {
@@ -385,7 +385,7 @@
     });
 </script>
 <div id="user-activate" class="modal hide fade" style="display: none; ">
-    <form action="<?= base_url('auth/send') ?>" id="form-activate" method="post" class="form-horizontal">
+    <form action="<?= site_url('auth/send') ?>" id="form-activate" method="post" class="form-horizontal">
         <fieldset>
             <div class="modal-header">
                 <a href="#" class="close" data-dismiss="modal">&times;</a>

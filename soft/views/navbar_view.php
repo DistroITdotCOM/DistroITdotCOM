@@ -12,7 +12,7 @@
             <? if ($this->cart->contents()) { ?>
                 <ul class="nav">
                     <li class="divider-vertical"></li>
-                    <li><a href="<?= base_url('order/display.html') ?>"><?= $this->lang->line('bag') ?> ( <?=
+                    <li><a href="<?= site_url('order/display') ?>"><?= $this->lang->line('bag') ?> ( <?=
                             ($this->cart->total_items() == 1) ?
                                     $this->cart->total_items() . $this->lang->line('item') : $this->cart->total_items() . $this->lang->line('items')
                             ?> ) </a></li>
@@ -50,7 +50,7 @@
                     });
                 });
             </script>
-            <form class="navbar-search pull-right" action="<?= base_url('home/search.html') ?>" method="post">
+            <form class="navbar-search pull-right" action="<?= site_url('home/search') ?>" method="post">
                 <input type="text" id="searching" style="width: 180px;border-radius: 4px;margin-right: 5px;background-color: #F5F6F7;" class="search-query" name="keyword" placeholder="<?= $this->lang->line('search') ?>">
             </form>
         </div>
@@ -65,10 +65,10 @@
         <div class="modal-body">
             <ul class="nav nav-pills nav-stacked" style="text-align: center">
                 <? if ($this->session->userdata('user_role') == 1) { ?>
-                    <li><a class="btn btn-mini" href="<?= base_url('admin/account.html') ?>"><b><?= $this->lang->line('admin_menu') ?></b></a></li>
+                    <li><a class="btn btn-mini" href="<?= site_url('admin/account') ?>"><b><?= $this->lang->line('admin_menu') ?></b></a></li>
                 <? } ?>
-                <li><a class="btn btn-mini" href="<?= base_url('user/account.html') ?>"><b><?= $this->lang->line('main_menu') ?></b></a></li>
-                <li><a class="btn btn-mini" href="<?= base_url('auth/logout.html') ?>"><b><?= $this->lang->line('logout') ?></b></a></li>
+                <li><a class="btn btn-mini" href="<?= site_url('user/account') ?>"><b><?= $this->lang->line('main_menu') ?></b></a></li>
+                <li><a class="btn btn-mini" href="<?= site_url('auth/logout') ?>"><b><?= $this->lang->line('logout') ?></b></a></li>
             </ul>
         </div>
         <div class="modal-footer"></div>

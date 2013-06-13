@@ -4,24 +4,6 @@
         theme: "simple"
     });
     $(function() {
-        $(".ajaxproduct").click(function() {
-            var div = $(this).attr("class").split(' ')[1];
-            var ElementUrl = $(this).attr("asli");
-            var IdProduct = $(this).attr("idproduct");
-
-            $.ajax({
-                type: "POST",
-                data: "ajax=1&product_id=" + IdProduct,
-                url: ElementUrl,
-                beforeSend: function() {
-                    $('#' + div).html('<div style="text-align: center"><img src="' + loading_image_large + '"/></div>');
-                },
-                success: function(msg) {
-                    $('#' + div).html(msg);
-                }
-            });
-            return false;
-        });
         $("#product-insert").validate({
             rules: {
                 name: {
@@ -47,11 +29,11 @@
             },
             errorClass: "help-inline",
             errorElement: "span",
-            highlight: function(element, errorClass, validClass) {
+            highlight: function(element) {
                 $(element).parents('.control-group').addClass('error');
                 $(element).parents('.control-group').removeClass('success');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function(element) {
                 $(element).parents('.control-group').removeClass('error');
                 $(element).parents('.control-group').addClass('success');
             }
@@ -65,11 +47,11 @@
         $('.fileupload2').fileupload({
             uploadtype: "image"
         });
-        $('input#commission').autoNumeric({aSep: '.', aDec: ',', vMax: '9999999999'});
-        $('input#price').autoNumeric({aSep: '.', aDec: ',', vMax: '9999999999'});
+        $('input#commission').autoNumeric({aSep: '.', aDec: ',', vMax: '1000000'});
+        $('input#price').autoNumeric({aSep: '.', aDec: ',', vMax: '1000000'});
     });
 </script>
-<form action="<?= base_url('user/product_insert') ?>" id="product-insert" method="post" enctype="multipart/form-data" class="form-horizontal">
+<form action="<?= site_url('user/product_insert') ?>" id="product-insert" method="post" enctype="multipart/form-data" class="form-horizontal">
     <input type="hidden" value="1" name="insert" />
     <fieldset>
         <div class="control-group">
@@ -145,7 +127,7 @@
         </div>
         <div class="form-actions">
             <button type="submit" class="btn btn-primary"><?= $this->lang->line('submit') ?></button>&nbsp;
-            <a class="btn" href="<?= base_url('user/product.html') ?>">
+            <a class="btn" href="<?= site_url('user/product') ?>">
                 <?= $this->lang->line('cancel') ?>
             </a>
         </div>
