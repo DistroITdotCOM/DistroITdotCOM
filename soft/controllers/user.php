@@ -194,6 +194,26 @@ class User extends CI_Controller {
         echo preg_replace('/\s\s+/', '', $this->load->view('template_view', $data, TRUE));
     }
 
+    function upload_image() {
+        $UploadDirectory = 'upload/img/product/';
+        $userfile = $this->input->post('userfile');
+        if ($this->input->post('userfile') != '') {
+            $FileName = strtolower($_FILES[$userfile]['name']);
+            $FileType = $_FILES[$userfile]['type'];
+            $FileSize = $_FILES[$userfile]['size'];
+            $RandNumber = rand(0, 9999999999);
+            if (($FileType == 'image/png' || $FileType == 'image/gif' || $FileType == 'image/jpeg') && $FileSize < 1500000) {
+                $Name['message'] = $RandNumber . '_' . $FileName;
+//                move_uploaded_file($_FILES[$userfile]['tmp_name'], $UploadDirectory . $Name['message']);
+                echo json_encode($Name);
+            } else if ($FileSize > 1500000) {
+                echo 'file lebih dari 1 MB';
+            } else {
+                echo 'file format tidak diijinkan';
+            }
+        }
+    }
+
     function product_insert() {
         $pict_name[0] = null;
         $pict_name[1] = null;
@@ -261,7 +281,8 @@ class User extends CI_Controller {
             'jquery.validate.min.js',
             'jasny-bootstrap/js/jasny-bootstrap.min.js',
             'tinymce/jscripts/tiny_mce/tiny_mce.js',
-            'autoNumeric.js');
+            'autoNumeric.js',
+            'jquery.form.js');
         $this->load->library('Header_lib', $param);
         $data['header'] = $this->header_lib->loadHeader();
         echo preg_replace('/\s\s+/', '', $this->load->view('template_view', $data, TRUE));

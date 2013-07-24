@@ -51,7 +51,7 @@
         });
     });
 </script>
-<? $this->load->view('admin/admin-menu_view') ?>
+<? if ($this->input->post('ajax') != 1) $this->load->view('admin/admin-menu_view') ?>
 <div id="admin-order">
     <table class="table table-striped table-bordered table-condensed">
         <thead>

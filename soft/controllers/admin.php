@@ -9,7 +9,6 @@ class Admin extends CI_Controller {
         parent::__construct();
         if ($this->session->userdata('user_role') != 1)
             redirect();
-//        $this->lang->load('admin', $this->session->userdata('lang'));
         $this->session->set_flashdata('redirectToCurrent', current_url());
     }
 
@@ -49,12 +48,10 @@ class Admin extends CI_Controller {
         $config['num_links'] = 2;
         $this->pagination->initialize($config);
         $data['number'] = $this->uri->segment(3, 0);
-
         $this->lang->load('admin/account', $this->session->userdata('lang'));
         $data['component'] = 'admin/account_view';
         $data['rs_component'] = $this->Admin_model->account($this->uri->segment(3, 0), $config['per_page']);
         $data['notification'] = $this->session->flashdata('notification');
-
         $param['title'] = $this->lang->line('account');
         $param['arrCss'] = array(
             '../plugin/bootstrap/css/bootstrap.min.css',
@@ -83,6 +80,7 @@ class Admin extends CI_Controller {
                 redirect('admin/account');
             }
             $data['user_id'] = $this->input->post('user');
+            $this->lang->load('admin/account-payout', $this->session->userdata('lang'));
             $this->load->view('admin/account-payout_view', $data);
         } else {
             redirect('admin/account');
@@ -97,6 +95,7 @@ class Admin extends CI_Controller {
             $url_js = base_url('res/js/activate.js');
             $this->Admin_model->account_active($user_id, $user_active);
             echo '<script src="' . $url_js . '"></script>';
+            $this->lang->load('admin/account-active', $this->session->userdata('lang'));
             if ($user_active == 0) {
                 echo '<a class="activate active' . $user_id . '" href="' . $url . '/1">' . $this->lang->line('status_active') . '</a>';
             } else if ($user_active == 1) {
@@ -133,12 +132,10 @@ class Admin extends CI_Controller {
         $config['num_links'] = 2;
         $this->pagination->initialize($config);
         $data['number'] = $this->uri->segment(3, 0);
-
-        $this->lang->load('admin/account', $this->session->userdata('lang'));
+        $this->lang->load('admin/order', $this->session->userdata('lang'));
         $data['component'] = 'admin/order_view';
         $data['rs_component'] = $this->Admin_model->order($this->uri->segment(3, 0), $config['per_page']);
         $data['notification'] = $this->session->flashdata('notification');
-
         $param['title'] = $this->lang->line('order');
         $param['arrCss'] = array(
             '../plugin/bootstrap/css/bootstrap.min.css',
@@ -163,6 +160,7 @@ class Admin extends CI_Controller {
             $invoice_id = $this->uri->segment(3, 0);
             $user_id = $this->uri->segment(4, 0);
             $data = $this->Admin_model->order_invoice($invoice_id, $user_id);
+            $this->lang->load('admin/order-invoice', $this->session->userdata('lang'));
             $this->load->view('admin/order-invoice_view', $data);
         } else {
             redirect('admin/order');
@@ -177,6 +175,7 @@ class Admin extends CI_Controller {
             $url_js = base_url('res/js/activate.js');
             $this->Admin_model->order_invoice_active($invoice_id, $invoice_active);
             echo '<script src="' . $url_js . '"></script>';
+            $this->lang->load('admin/order-invoice-active', $this->session->userdata('lang'));
             if ($invoice_active == 0) {
                 echo '<a class="activate status' . $invoice_id . '" href="' . $url . '/1">' . $this->lang->line('paid') . '</a>';
             } else if ($invoice_active == 1) {
@@ -213,12 +212,10 @@ class Admin extends CI_Controller {
         $config['num_links'] = 2;
         $this->pagination->initialize($config);
         $data['number'] = $this->uri->segment(3, 0);
-
-        $this->lang->load('admin/account', $this->session->userdata('lang'));
+        $this->lang->load('admin/product', $this->session->userdata('lang'));
         $data['component'] = 'admin/product_view';
         $data['rs_component'] = $this->Admin_model->product($this->uri->segment(3, 0), $config['per_page']);
         $data['notification'] = $this->session->flashdata('notification');
-
         $param['title'] = $this->lang->line('product');
         $param['arrCss'] = array(
             '../plugin/bootstrap/css/bootstrap.min.css',
@@ -230,9 +227,7 @@ class Admin extends CI_Controller {
         $param['arrPlugin'] = array(
             'jquery.min.js',
             'bootstrap/js/bootstrap.min.js',
-            'bootstrap-notify-1.0.0/js/bootstrap-notify.js',
-            'jquery.validate.min.js',
-            'autoNumeric.js');
+            'bootstrap-notify-1.0.0/js/bootstrap-notify.js');
         $this->load->library('Header_lib', $param);
         $data['header'] = $this->header_lib->loadHeader();
         echo preg_replace('/\s\s+/', '', $this->load->view('template_view', $data, TRUE));
@@ -246,6 +241,7 @@ class Admin extends CI_Controller {
             $url_js = base_url('res/js/activate.js');
             $this->Admin_model->product_active($product_id, $product_active);
             echo '<script src="' . $url_js . '"></script>';
+            $this->lang->load('admin/product-active', $this->session->userdata('lang'));
             if ($product_active == 0) {
                 echo '<a class="activate product' . $product_id . '" href="' . $url . '/1">' . $this->lang->line('status_active') . '</a>';
             } else if ($product_active == 1) {

@@ -4,6 +4,40 @@
         theme: "simple"
     });
     $(function() {
+        var bar = $('.bar');
+        var percent = $('.percent');
+        var status = $('#status');
+        $('input:file').on('change', function() {
+            var userfile = $(this).attr('name');
+            $('#kirim').attr('disabled', '');
+            $('#product-insert').ajaxSubmit({
+                type: 'POST',
+                data: {userfile: userfile},
+                url: '<?= site_url('user/upload_image') ?>',
+                dataType: 'json',
+                beforeSend: function() {
+                    status.empty();
+                    var percentVal = '0%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                success: function(xhr) {
+                    var percentVal = '100%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                    $('#' + userfile).attr('value', xhr.message);
+                },
+                complete: function(xhr) {
+                    $('#kirim').removeAttr('disabled');
+                    status.html(xhr.responseText);
+                }
+            });
+        });
         $("#product-insert").validate({
             rules: {
                 name: {
@@ -51,8 +85,16 @@
         $('input#price').autoNumeric({aSep: '.', aDec: ',', vMax: '1000000'});
     });
 </script>
+<style>
+    .progress { position:relative; width:400px; border: 1px solid #ddd; padding: 1px; border-radius: 3px; }
+    .bar { background-color: #B4F5B4; width:0%; height:20px; border-radius: 3px; }
+    .percent { position:absolute; display:inline-block; top:3px; left:48%; }
+</style>
 <form action="<?= site_url('user/product_insert') ?>" id="product-insert" method="post" enctype="multipart/form-data" class="form-horizontal">
     <input type="hidden" value="1" name="insert" />
+    <input type="hidden" name="file0" id="userfile0" value="no-img.jpg"/>
+    <input type="hidden" name="file1" id="userfile1" value="no-img.jpg"/>
+    <input type="hidden" name="file2" id="userfile2" value="no-img.jpg"/>
     <fieldset>
         <div class="control-group">
             <label class="control-label" for="name"><?= $this->lang->line('product_name') ?></label>
@@ -110,6 +152,12 @@
                         <a href="#" class="btn fileupload-exists" data-dismiss="fileupload"><?= $this->lang->line('pict_remove') ?></a>
                     </div>
                 </div>
+                <div class="progress">
+                    <div class="bar"></div >
+                    <div class="percent">0%</div >
+                </div>
+
+                <div id="status"></div>
                 <p><?= $this->lang->line('pict_note') ?></p>
             </div>
         </div>
@@ -126,7 +174,7 @@
             </div>
         </div>
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary"><?= $this->lang->line('submit') ?></button>&nbsp;
+            <button type="submit" id="kirim" class="btn btn-primary"><?= $this->lang->line('submit') ?></button>&nbsp;
             <a class="btn" href="<?= site_url('user/product') ?>">
                 <?= $this->lang->line('cancel') ?>
             </a>

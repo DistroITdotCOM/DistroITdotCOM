@@ -1,3 +1,4 @@
+<? $this->lang->load('admin/admin-menu', $this->session->userdata('lang')) ?>
 <style>
     .btn-mini{
         margin: 3px 2px;
