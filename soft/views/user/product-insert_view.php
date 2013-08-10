@@ -6,7 +6,8 @@
     $(function() {
         var bar = $('.bar');
         var percent = $('.percent');
-        var status = $('#status');
+        var sukses = $('#sukses');
+        var gagal = $('#gagal');
         $('input:file').on('change', function() {
             var userfile = $(this).attr('name');
             $('#kirim').attr('disabled', '');
@@ -16,7 +17,8 @@
                 url: '<?= site_url('user/upload_image') ?>',
                 dataType: 'json',
                 beforeSend: function() {
-                    status.empty();
+                    sukses.empty();
+                    gagal.empty();
                     var percentVal = '0%';
                     bar.width(percentVal);
                     percent.html(percentVal);
@@ -31,10 +33,12 @@
                     bar.width(percentVal);
                     percent.html(percentVal);
                     $('#' + userfile).attr('value', xhr.message);
+                    sukses.html(xhr.message);
                 },
                 complete: function(xhr) {
                     $('#kirim').removeAttr('disabled');
-                    status.html(xhr.responseText);
+                    if (xhr.responseText.indexOf('message') !== 2)
+                        gagal.html(xhr.responseText);
                 }
             });
         });
@@ -72,15 +76,6 @@
                 $(element).parents('.control-group').addClass('success');
             }
         });
-        $('.fileupload0').fileupload({
-            uploadtype: "image"
-        });
-        $('.fileupload1').fileupload({
-            uploadtype: "image"
-        });
-        $('.fileupload2').fileupload({
-            uploadtype: "image"
-        });
         $('input#commission').autoNumeric({aSep: '.', aDec: ',', vMax: '1000000'});
         $('input#price').autoNumeric({aSep: '.', aDec: ',', vMax: '1000000'});
     });
@@ -92,9 +87,9 @@
 </style>
 <form action="<?= site_url('user/product_insert') ?>" id="product-insert" method="post" enctype="multipart/form-data" class="form-horizontal">
     <input type="hidden" value="1" name="insert" />
-    <input type="hidden" name="file0" id="userfile0" value="no-img.jpg"/>
-    <input type="hidden" name="file1" id="userfile1" value="no-img.jpg"/>
-    <input type="hidden" name="file2" id="userfile2" value="no-img.jpg"/>
+    <input type="hidden" name="file0" id="userfile0" value="../no-img.jpg"/>
+    <input type="hidden" name="file1" id="userfile1" value="../no-img.jpg"/>
+    <input type="hidden" name="file2" id="userfile2" value="../no-img.jpg"/>
     <fieldset>
         <div class="control-group">
             <label class="control-label" for="name"><?= $this->lang->line('product_name') ?></label>
@@ -152,12 +147,13 @@
                         <a href="#" class="btn fileupload-exists" data-dismiss="fileupload"><?= $this->lang->line('pict_remove') ?></a>
                     </div>
                 </div>
+                <br>
+                <div id="sukses" class="label label-success"></div>
+                <div id="gagal" class="label label-important"></div>
                 <div class="progress">
                     <div class="bar"></div >
                     <div class="percent">0%</div >
                 </div>
-
-                <div id="status"></div>
                 <p><?= $this->lang->line('pict_note') ?></p>
             </div>
         </div>

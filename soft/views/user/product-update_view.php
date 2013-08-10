@@ -11,6 +11,44 @@ $product_price = $product->product_price;
         theme: "simple"
     });
     $(function() {
+        var bar = $('.bar');
+        var percent = $('.percent');
+        var sukses = $('#sukses');
+        var gagal = $('#gagal');
+        $('input:file').on('change', function() {
+            var userfile = $(this).attr('name');
+            $('#kirim').attr('disabled', '');
+            $('#product-update').ajaxSubmit({
+                type: 'POST',
+                data: {userfile: userfile},
+                url: '<?= site_url('user/upload_image') ?>',
+                dataType: 'json',
+                beforeSend: function() {
+                    sukses.empty();
+                    gagal.empty();
+                    var percentVal = '0%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                success: function(xhr) {
+                    var percentVal = '100%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                    $('#' + userfile).attr('value', xhr.message);
+                    sukses.html(xhr.message);
+                },
+                complete: function(xhr) {
+                    $('#kirim').removeAttr('disabled');
+                    if (xhr.responseText.indexOf('message') !== 2)
+                        gagal.html(xhr.responseText);
+                }
+            });
+        });
         $("#product-update").validate({
             rules: {
                 name: {
@@ -45,22 +83,15 @@ $product_price = $product->product_price;
                 $(element).parents('.control-group').addClass('success');
             }
         });
-        $('.fileupload0').fileupload({
-            uploadtype: "image",
-            name: "userfile0"
-        });
-        $('.fileupload1').fileupload({
-            uploadtype: "image",
-            name: "userfile1"
-        });
-        $('.fileupload2').fileupload({
-            uploadtype: "image",
-            name: "userfile2"
-        });
         $('input#commission').autoNumeric({aSep: '.', aDec: ',', vMax: '1000000'});
         $('input#price').autoNumeric({aSep: '.', aDec: ',', vMax: '1000000'});
     });
 </script>
+<style>
+    .progress { position:relative; width:400px; border: 1px solid #ddd; padding: 1px; border-radius: 3px; }
+    .bar { background-color: #B4F5B4; width:0%; height:20px; border-radius: 3px; }
+    .percent { position:absolute; display:inline-block; top:3px; left:48%; }
+</style>
 <form action="<?= site_url('user/product_update') ?>" id="product-update" method="post" enctype="multipart/form-data" class="form-horizontal">
     <input type="hidden" value="1" name="update" />
     <input type="hidden" value="<?= $product_id ?>" name="product_id" />
@@ -89,6 +120,7 @@ $product_price = $product->product_price;
                 for ($key = 0; $key < 3; $key++) {
                     $picture = !empty($pict[$key]->pict_name) ? $pict[$key]->pict_name : '../no-img.jpg';
                     ?>
+                    <input type="hidden" name="file<?= $key ?>" id="userfile<?= $key ?>" value="<?= $picture ?>"/>
                     <div class="fileupload<?= $key ?> fileupload-new fileupload" data-provides="fileupload">
                         <div class="fileupload-new thumbnail" style="width: 200px;">
                             <img src="<?= base_url('upload/img/product/' . $picture) ?>">
@@ -96,12 +128,19 @@ $product_price = $product->product_price;
                         <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                         <div>
                             <span class="btn btn-file"><span class="fileupload-new"><?= $this->lang->line('pict_select') ?></span>
-                                <span class="fileupload-exists"><?= $this->lang->line('pict_change') ?></span><input type="file"/>
+                                <span class="fileupload-exists"><?= $this->lang->line('pict_change') ?></span><input type="file" name="userfile<?= $key ?>"/>
                             </span>
                             <a href="#" class="btn fileupload-exists" data-dismiss="fileupload"><?= $this->lang->line('pict_remove') ?></a>
                         </div>
                     </div>
                 <? } ?>
+                <br>
+                <div id="sukses" class="label label-success"></div>
+                <div id="gagal" class="label label-important"></div>
+                <div class="progress">
+                    <div class="bar"></div >
+                    <div class="percent">0%</div >
+                </div>
                 <p><?= $this->lang->line('pict_note') ?></p>
             </div>
         </div>

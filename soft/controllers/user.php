@@ -195,21 +195,24 @@ class User extends CI_Controller {
     }
 
     function upload_image() {
+        $this->lang->load('user/upload-image', $this->session->userdata('lang'));
         $UploadDirectory = 'upload/img/product/';
         $userfile = $this->input->post('userfile');
         if ($this->input->post('userfile') != '') {
-            $FileName = strtolower($_FILES[$userfile]['name']);
-            $FileType = $_FILES[$userfile]['type'];
-            $FileSize = $_FILES[$userfile]['size'];
-            $RandNumber = rand(0, 9999999999);
-            if (($FileType == 'image/png' || $FileType == 'image/gif' || $FileType == 'image/jpeg') && $FileSize < 1500000) {
-                $Name['message'] = $RandNumber . '_' . $FileName;
-//                move_uploaded_file($_FILES[$userfile]['tmp_name'], $UploadDirectory . $Name['message']);
-                echo json_encode($Name);
-            } else if ($FileSize > 1500000) {
-                echo 'file lebih dari 1 MB';
-            } else {
-                echo 'file format tidak diijinkan';
+            if (isset($_FILES[$userfile]['name'])) {
+                $FileName = strtolower($_FILES[$userfile]['name']);
+                $FileType = $_FILES[$userfile]['type'];
+                $FileSize = $_FILES[$userfile]['size'];
+                $RandNumber = rand(0, 9999999999);
+                if (($FileType == 'image/png' || $FileType == 'image/gif' || $FileType == 'image/jpeg') && $FileSize < 1500000) {
+                    $Name['message'] = $RandNumber . '_' . $FileName;
+                    move_uploaded_file($_FILES[$userfile]['tmp_name'], $UploadDirectory . $Name['message']);
+                    echo json_encode($Name);
+                } else if ($FileSize > 1500000) {
+                    echo $this->lang->line('file');
+                } else {
+                    echo $this->lang->line('type');
+                }
             }
         }
     }
@@ -222,42 +225,9 @@ class User extends CI_Controller {
             $user_id = $this->session->userdata('user_id');
             $product_name = $this->input->post('name');
             $product_desc = $this->input->post('pdetail');
-            if (!empty($_FILES['userfile0']['name'])) {
-                $config['upload_path'] = './upload/img/product/';
-                $config['allowed_types'] = 'png|jpg|jpeg|gif';
-                $config['remove_spaces'] = true;
-                $this->load->library('upload', $config);
-                if ($this->upload->do_upload('userfile0')) {
-                    $pict_name[0] = $this->upload->file_name;
-                    $this->upload->data();
-                }
-            } else {
-                $pict_name[0] = '../no-img.jpg';
-            }
-            if (!empty($_FILES['userfile1']['name'])) {
-                $config['upload_path'] = './upload/img/product/';
-                $config['allowed_types'] = 'png|jpg|jpeg|gif';
-                $config['remove_spaces'] = true;
-                $this->load->library('upload', $config);
-                if ($this->upload->do_upload('userfile1')) {
-                    $pict_name[1] = $this->upload->file_name;
-                    $this->upload->data();
-                }
-            } else {
-                $pict_name[1] = '../no-img.jpg';
-            }
-            if (!empty($_FILES['userfile2']['name'])) {
-                $config['upload_path'] = './upload/img/product/';
-                $config['allowed_types'] = 'png|jpg|jpeg|gif';
-                $config['remove_spaces'] = true;
-                $this->load->library('upload', $config);
-                if ($this->upload->do_upload('userfile2')) {
-                    $pict_name[2] = $this->upload->file_name;
-                    $this->upload->data();
-                }
-            } else {
-                $pict_name[2] = '../no-img.jpg';
-            }
+            $pict_name[0] = $this->input->post('file0');
+            $pict_name[1] = $this->input->post('file1');
+            $pict_name[2] = $this->input->post('file2');
             $product_commission = reverse_number($this->input->post('commission'));
             $product_price = reverse_number($this->input->post('price'));
             $this->User_model->product_insert($user_id, $product_name, $product_desc, $product_commission, $product_price, $pict_name);
@@ -296,57 +266,9 @@ class User extends CI_Controller {
             $product_id = $this->input->post('product_id');
             $product_name = $this->input->post('name');
             $product_desc = $this->input->post('pdetail');
-            if (!empty($_FILES['userfile0']['name'])) {
-                $config['upload_path'] = './upload/img/product/';
-                $config['allowed_types'] = 'png|jpg|jpeg|gif';
-                $config['remove_spaces'] = true;
-                $this->load->library('upload', $config);
-                if ($this->upload->do_upload('userfile0')) {
-                    $pict_name[0] = $this->upload->file_name;
-                    $this->upload->data();
-                }
-            } else {
-                $pict_temp = $this->User_model->product_get_update($this->session->userdata('user_id'), $this->input->post('product_id'));
-                foreach ($pict_temp['pict'] as $key => $value) {
-                    if ($key == 0) {
-                        !empty($value->pict_name) ? $pict_name[2] = $value->pict_name : $pict_name[2] = '../no-img.jpg';
-                    }
-                }
-            }
-            if (!empty($_FILES['userfile1']['name'])) {
-                $config['upload_path'] = './upload/img/product/';
-                $config['allowed_types'] = 'png|jpg|jpeg|gif';
-                $config['remove_spaces'] = true;
-                $this->load->library('upload', $config);
-                if ($this->upload->do_upload('userfile1')) {
-                    $pict_name[1] = $this->upload->file_name;
-                    $this->upload->data();
-                }
-            } else {
-                $pict_temp = $this->User_model->product_get_update($this->session->userdata('user_id'), $this->input->post('product_id'));
-                foreach ($pict_temp['pict'] as $key => $value) {
-                    if ($key == 1) {
-                        !empty($value->pict_name) ? $pict_name[1] = $value->pict_name : $pict_name[1] = '../no-img.jpg';
-                    }
-                }
-            }
-            if (!empty($_FILES['userfile2']['name'])) {
-                $config['upload_path'] = './upload/img/product/';
-                $config['allowed_types'] = 'png|jpg|jpeg|gif';
-                $config['remove_spaces'] = true;
-                $this->load->library('upload', $config);
-                if ($this->upload->do_upload('userfile2')) {
-                    $pict_name[2] = $this->upload->file_name;
-                    $this->upload->data();
-                }
-            } else {
-                $pict_temp = $this->User_model->product_get_update($this->session->userdata('user_id'), $this->input->post('product_id'));
-                foreach ($pict_temp['pict'] as $key => $value) {
-                    if ($key == 2) {
-                        !empty($value->pict_name) ? $pict_name[0] = $value->pict_name : $pict_name[0] = '../no-img.jpg';
-                    }
-                }
-            }
+            $pict_name[0] = $this->input->post('file0');
+            $pict_name[1] = $this->input->post('file1');
+            $pict_name[2] = $this->input->post('file2');
             $product_commission = reverse_number($this->input->post('commission'));
             $product_price = reverse_number($this->input->post('price'));
             $this->User_model->product_update($product_id, $product_name, $product_desc, $product_commission, $product_price, $pict_name);
@@ -370,7 +292,8 @@ class User extends CI_Controller {
             'jquery.validate.min.js',
             'jasny-bootstrap/js/jasny-bootstrap.min.js',
             'tinymce/jscripts/tiny_mce/tiny_mce.js',
-            'autoNumeric.js');
+            'autoNumeric.js',
+            'jquery.form.js');
         $this->load->library('Header_lib', $param);
         $data['header'] = $this->header_lib->loadHeader();
         echo preg_replace('/\s\s+/', '', $this->load->view('template_view', $data, TRUE));
