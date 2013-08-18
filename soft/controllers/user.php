@@ -7,7 +7,9 @@ class User extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->session->keep_flashdata('notification');
+        $this->lang->load('notification', $this->session->userdata('lang'));
+        if ($this->session->flashdata('notification') == 'Logout Sukses.' || $this->session->flashdata('notification') == 'Logout Successfully.')
+            $this->session->keep_flashdata('notification');
         if ($this->session->userdata('Clogin') != TRUE)
             redirect();
         $this->session->set_flashdata('redirectToCurrent', current_url());
@@ -305,7 +307,67 @@ class User extends CI_Controller {
     }
 
     function address() {
-        
+        if ($this->input->post('update') == 1) {
+            $user_id = $this->session->userdata('user_id');
+            $company = $this->input->post('company');
+            $address = $this->input->post('address');
+            $city = $this->input->post('city');
+            $state = $this->input->post('state');
+            $zip = $this->input->post('zip');
+            $this->User_model->address_update($user_id, $company, $address, $city, $state, $zip);
+            $this->session->set_flashdata('notification', $this->lang->line('save_notification'));
+            redirect('user/address');
+        }
+        $this->lang->load('user/address', $this->session->userdata('lang'));
+        $data['component'] = 'user/address_view';
+        $data['rs_component'] = $this->User_model->address($this->session->userdata('user_id'));
+        $data['notification'] = $this->session->flashdata('notification');
+        $param['title'] = $this->lang->line('address');
+        $param['arrCss'] = array(
+            '../plugin/bootstrap/css/bootstrap.min.css',
+            '../plugin/bootstrap/css/bootstrap-responsive.min.css',
+            '../plugin/bootstrap-notify-1.0.0/css/styles/alert-blackgloss.css',
+            '../plugin/bootstrap-notify-1.0.0/css/bootstrap-notify.css',
+            'style.css');
+        $param['arrJs'] = array();
+        $param['arrPlugin'] = array(
+            'jquery.min.js',
+            'bootstrap/js/bootstrap.min.js',
+            'bootstrap-notify-1.0.0/js/bootstrap-notify.js',
+            'jquery.validate.min.js');
+        $this->load->library('Header_lib', $param);
+        $data['header'] = $this->header_lib->loadHeader();
+        echo preg_replace('/\s\s+/', '', $this->load->view('template_view', $data, TRUE));
+    }
+
+    function map() {
+        $this->lang->load('user/map', $this->session->userdata('lang'));
+        $data['component'] = 'user/map_view';
+        $data['rs_component'] = $this->User_model->map($this->session->userdata('user_id'));
+        $data['notification'] = $this->session->flashdata('notification');
+        $param['title'] = $this->lang->line('map');
+        $param['arrCss'] = array(
+            '../plugin/bootstrap/css/bootstrap.min.css',
+            '../plugin/bootstrap/css/bootstrap-responsive.min.css',
+            '../plugin/bootstrap-notify-1.0.0/css/styles/alert-blackgloss.css',
+            '../plugin/bootstrap-notify-1.0.0/css/bootstrap-notify.css',
+            'style.css');
+        $param['arrJs'] = array();
+        $param['arrPlugin'] = array(
+            'jquery.min.js',
+            'bootstrap/js/bootstrap.min.js',
+            'bootstrap-notify-1.0.0/js/bootstrap-notify.js',
+            'jquery.validate.min.js');
+        $this->load->library('Header_lib', $param);
+        $data['header'] = $this->header_lib->loadHeader();
+        echo preg_replace('/\s\s+/', '', $this->load->view('template_view', $data, TRUE));
+    }
+
+    function map_update() {
+        $user_id = $this->session->userdata('user_id');
+        $user_latitude = $this->input->post('latitude');
+        $user_longitude = $this->input->post('longitude');
+        $this->User_model->map_update($user_id, $user_latitude, $user_longitude);
     }
 
 }

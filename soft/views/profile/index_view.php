@@ -18,6 +18,7 @@ $pict = !empty($user->user_pict) ? $user->user_pict : '../no-img.jpg';
                     $("#content").html('<div style="text-align: center"><img src="' + loading_image_large + '"/></div>');
                 },
                 success: function(msg) {
+                    window.history.pushState('', '', url);
                     $("#content").html(msg);
                 }
             });

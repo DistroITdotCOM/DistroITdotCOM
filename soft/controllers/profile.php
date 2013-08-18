@@ -85,7 +85,8 @@ class Profile extends CI_Controller {
     function location() {
         if ($this->input->post('ajax') == 1) {
             $this->lang->load('profile/location', $this->session->userdata('lang'));
-            echo preg_replace('/\s\s+/', '', $this->load->view('profile/location_view', NULL, TRUE));
+            $data = $this->Profile_model->location($this->session->userdata('affiliate'));
+            echo preg_replace('/\s\s+/', '', $this->load->view('profile/location_view', $data, TRUE));
         } else {
             redirect();
         }

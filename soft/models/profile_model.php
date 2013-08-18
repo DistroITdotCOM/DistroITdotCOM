@@ -57,4 +57,12 @@ class Profile_model extends CI_Model {
         return ($data);
     }
 
+    function location($user_id) {
+        $sql = "SELECT user_latitude, user_longitude FROM user WHERE user_id={$this->db->escape($user_id)}";
+
+        $query = $this->db->query($sql);
+        $data['map'] = $query->row();
+        return ($data);
+    }
+
 }

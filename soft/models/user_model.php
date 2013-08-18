@@ -155,4 +155,37 @@ class User_model extends CI_Model {
         }
     }
 
+    function address($user_id) {
+        $sql = "SELECT user_fullname, user_address, user_city, state_state_id, user_zip FROM user WHERE user_id={$this->db->escape($user_id)}";
+
+        $query = $this->db->query($sql);
+        $data['address'] = $query->row();
+        return ($data);
+    }
+
+    function address_update($user_id, $company, $address, $city, $state, $zip) {
+        $sql = "UPDATE user SET 
+            user_fullname={$this->db->escape($company)},
+            user_address={$this->db->escape($address)},
+            user_city={$this->db->escape($city)},
+            state_state_id={$this->db->escape($state)},
+            user_zip={$this->db->escape($zip)} WHERE user_id={$this->db->escape($user_id)}";
+        $this->db->query($sql);
+    }
+
+    function map($user_id) {
+        $sql = "SELECT user_latitude, user_longitude FROM user WHERE user_id={$this->db->escape($user_id)}";
+
+        $query = $this->db->query($sql);
+        $data['map'] = $query->row();
+        return ($data);
+    }
+
+    function map_update($user_id, $user_latitude, $user_longitude) {
+        $sql = "UPDATE user SET 
+            user_latitude={$this->db->escape($user_latitude)},
+            user_longitude={$this->db->escape($user_longitude)} WHERE user_id={$this->db->escape($user_id)}";
+        $this->db->query($sql);
+    }
+
 }
