@@ -132,10 +132,10 @@ class Order extends CI_Controller {
                     $session = $this->Auth_model->login_session($email);
                     $this->Order_model->invoice_print_user($session->user_id);
                 } else {
-//                    $mail->_register($email, $password);
+                    $mail->_register($email, $password);
                     $this->Order_model->invoice_print_guest($fullname, $email, $phone, $password, $affiliate);
                 }
-//                $mail->_invoice_print($fullname, $email, $phone, $address, $city, $state_state_id, $zip);
+                $mail->_invoice_print($fullname, $email, $phone, $address, $city, $state_state_id, $zip);
 
                 $this->cart->destroy();
                 $this->session->set_flashdata('notification', $this->lang->line('email_notification'));

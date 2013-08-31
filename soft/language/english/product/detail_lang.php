@@ -3,6 +3,8 @@
 $lang['quantity'] = 'Quantity';
 $lang['order'] = 'Order Now';
 $lang['merchant'] = 'Merchant';
+$lang['verified_profile'] = 'Verified seller';
+$lang['unverified_profile'] = 'Unverified seller';
 $lang['product_id'] = 'Product ID';
 $lang['commission'] = 'Commission for Affiliate';
 $lang['price'] = 'Price';

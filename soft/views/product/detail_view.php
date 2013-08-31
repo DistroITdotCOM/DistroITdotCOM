@@ -95,7 +95,10 @@ $product_commission = $product->product_commission;
     <div class="span6">
         <h1><?= $product_name ?></h1>
         <hr>
-        <b><?= $this->lang->line('merchant') ?>: </b><a href="<?= true_url(strtolower($user_name)) ?>" target="_blank"><?= $user_name ?></a><br>
+        <b><?= $this->lang->line('merchant') ?>: </b>
+        <a href="<?= true_url(strtolower($user_name)) ?>" target="_blank">
+            <?= $user_name ?> -> <?= ($product->user_verified == '1') ? $this->lang->line('verified_profile') : $this->lang->line('unverified_profile') ?>
+        </a><br>
         <b><?= $this->lang->line('product_id') ?>: </b><?= $product_id ?><br>
         <? if (is_user() == TRUE) { ?>
             <b><?= $this->lang->line('commission') ?>: </b>Rp <?= number_format($product_commission, 0, ',', '.') ?><br>

@@ -34,7 +34,7 @@ $pict = !empty($user->user_pict) ? $user->user_pict : '../no-img.jpg';
         </div>
         <br>
         <ul id="myTab" class="nav nav-pills nav-stacked">
-            <li class="active"><a href="<?= site_url('profile/info') ?>">Info</a></li>
+            <li class="active"><a href="<?= site_url('profile/info') ?>"><?= $this->lang->line('info') ?></a></li>
             <li><a href="<?= site_url('profile/product') ?>"><?= $this->lang->line('product') ?></a></li>
             <li><a href="<?= site_url('profile/location') ?>"><?= $this->lang->line('location') ?></a></li>
         </ul>

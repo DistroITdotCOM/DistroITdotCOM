@@ -19,6 +19,9 @@
 </script>
 <? if (!empty($product)) { ?>
     <div id="order-product">
+        <div class="well">
+            <h1><?= ($info['user']->user_verified == '1') ? $this->lang->line('verified_profile') : $this->lang->line('unverified_profile') ?></h1>
+        </div>
         <? foreach ($product as $key => $value) { ?>
             <div class="span3" <?= ($key == 0) ? 'style="margin-left: 0px;"' : '' ?>>
                 <div class="thumbnail">

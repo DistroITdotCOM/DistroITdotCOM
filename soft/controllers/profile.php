@@ -41,7 +41,7 @@ class Profile extends CI_Controller {
     }
     function info() {
         if ($this->input->post('ajax') == 1) {
-            $this->lang->load('profile/location', $this->session->userdata('lang'));
+            $this->lang->load('profile/info', $this->session->userdata('lang'));
             $data = $this->Profile_model->info($this->session->userdata('affiliate'));
             echo preg_replace('/\s\s+/', '', $this->load->view('profile/info_view', $data, TRUE));
         } else {
