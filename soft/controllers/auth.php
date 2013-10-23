@@ -26,7 +26,7 @@ class Auth extends CI_Controller {
         if ($username != NULL || $email != NULL || $gender != NULL || $phone != NULL) {
             if ($this->Validation_model->email_check($email) != TRUE) {
                 $this->Auth_model->register_user($username, $email, $gender, $phone, $password, $affiliate);
-//                $this->mail->_register($email, $password);
+                $this->mail->_register($email, $password);
                 $this->session->set_flashdata('notification', $this->lang->line('email_notification'));
                 echo json_encode(array("success", "{$this->session->flashdata('redirectToCurrent')}"));
             } else {
@@ -78,7 +78,7 @@ class Auth extends CI_Controller {
 
     function send() {
         $email = $this->input->post('email');
-//        $this->mail->_send($email);
+        $this->mail->_send($email);
         $this->session->set_flashdata('notification', $this->lang->line('email_notification'));
         echo json_encode(array("success", "{$this->session->flashdata('redirectToCurrent')}"));
     }
@@ -87,7 +87,7 @@ class Auth extends CI_Controller {
         $email = $this->input->post('email');
         $randomPass = random_string('alnum', 8);
         $this->Auth_model->forgot($email, $randomPass);
-//        $this->mail->_forgot($email, $randomPass);
+        $this->mail->_forgot($email, $randomPass);
         $this->session->set_flashdata('notification', $this->lang->line('email_notification'));
         echo json_encode(array("success", "{$this->session->flashdata('redirectToCurrent')}"));
     }

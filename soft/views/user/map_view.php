@@ -75,9 +75,9 @@ $longitude = $map->user_longitude;
 </script>
 <? $this->load->view('user/main-menu_view') ?>
 <div class="form-horizontal">
-    <input size="20" type="text" id="latbox" name="lat" placeholder="Latitude">&nbsp;
-    <input size="20" type="text" id="lngbox" name="lng" placeholder="Longitude">&nbsp;
-    <button onclick="getLocation()" class="btn btn-info">Get MyLocation</button>
+    <input size="20" type="text" id="latbox" name="lat" placeholder="<?= $this->lang->line('latitude') ?>">&nbsp;
+    <input size="20" type="text" id="lngbox" name="lng" placeholder="<?= $this->lang->line('longitude') ?>">&nbsp;
+    <button onclick="getLocation()" class="btn btn-info"><?= $this->lang->line('get') ?></button>
 </div>
 <br>
 <div id="googleMapNotify"></div>

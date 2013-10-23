@@ -1,7 +1,6 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
+$lang['get'] = 'Lokasi Saya Sekarang';
+$lang['latitude'] = 'Lintang';
+$lang['longitude'] = 'Bujur';
+$lang['map'] = 'Peta Lokasi';
