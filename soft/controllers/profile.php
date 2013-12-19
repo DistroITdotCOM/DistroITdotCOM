@@ -39,6 +39,7 @@ class Profile extends CI_Controller {
         $data['header'] = $this->header_lib->loadHeader();
         echo preg_replace('/\s\s+/', '', $this->load->view('template_view', $data, TRUE));
     }
+
     function info() {
         if ($this->input->post('ajax') == 1) {
             $this->lang->load('profile/info', $this->session->userdata('lang'));
@@ -48,6 +49,7 @@ class Profile extends CI_Controller {
             redirect();
         }
     }
+
     function product() {
         if ($this->input->post('ajax') == 1) {
             $this->lang->load('profile/product', $this->session->userdata('lang'));
