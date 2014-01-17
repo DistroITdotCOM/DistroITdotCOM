@@ -9,7 +9,7 @@
     <div class="navbar-inner">
         <div class="container">
             <a class="brand" href="<?= true_url('www') ?>">DistroITdotCOM</a>
-            <? if ($this->cart->contents()) { ?>
+            <?php if ($this->cart->contents()) { ?>
                 <ul class="nav">
                     <li class="divider-vertical"></li>
                     <li><a href="<?= site_url('order/display') ?>"><?= $this->lang->line('bag') ?> ( <?=
@@ -17,28 +17,28 @@
                                     $this->cart->total_items() . $this->lang->line('item') : $this->cart->total_items() . $this->lang->line('items')
                             ?> ) </a></li>
                 </ul>
-            <? } else { ?>
+            <?php } else { ?>
                 <ul class="nav">
                     <li class="divider-vertical"></li>
                     <li style="float: left;padding: 10px 15px 10px;color: #777;text-decoration: none;text-shadow: 0 1px 0 #fff;"><?= $this->lang->line('buy') ?></li>
                 </ul>
-            <? } ?>
+            <?php } ?>
             <div class="btn-group pull-right">
-                <? if ($this->session->userdata('Clogin') == TRUE) { ?>
+                <?php if ($this->session->userdata('Clogin') == TRUE) { ?>
                     <a class="btn dropdown-toggle" data-toggle="modal" href="#user-menu">
-                        <? if ($this->session->userdata('user_role') == 1) { ?>
+                        <?php if ($this->session->userdata('user_role') == 1) { ?>
                             <i class="icon-user"></i> <?= $this->lang->line('admin') ?>
-                        <? } else if ($this->session->userdata('user_role') == 2) { ?>
+                        <?php } else if ($this->session->userdata('user_role') == 2) { ?>
                             <i class="icon-user"></i> <?= $this->lang->line('user') ?>
-                        <? } ?>
+                        <?php } ?>
                         <span class="caret"></span>
                     </a>
-                <? } else { ?>
+                <?php } else { ?>
                     <a class="btn dropdown-toggle" data-toggle="modal" href="#user-login">
                         <i class="icon-user"></i> <?= $this->lang->line('guest') ?>
                         <span class="caret"></span>
                     </a>
-                <? } ?>
+                <?php } ?>
             </div>
             <script>
                 $(function() {
@@ -56,8 +56,27 @@
         </div>
     </div>
 </div>
-<? if ($this->session->userdata('Clogin') == TRUE) {
-    if ($this->session->userdata('user_role') == 1) {
+<?php
+if ($this->session->userdata('Clogin') == TRUE) {
+    ?>
+    <div id="user-menu" class="modal hide fade" style="display: none; ">
+        <div class="modal-header">
+            <a href="#" class="close" data-dismiss="modal">&times;</a>
+            <h3><?= $this->lang->line('member') ?></h3>
+        </div>
+        <div class="modal-body">
+            <ul class="nav nav-pills nav-stacked" style="text-align: center">
+                <?php if ($this->session->userdata('user_role') == 1) { ?>
+                    <li><a class="btn btn-mini" data-toggle="modal" href="#user-register"><b><?= $this->lang->line('register') ?></b></a></li>
+                    <li><a class="btn btn-mini" href="<?= site_url('admin/account') ?>"><b><?= $this->lang->line('admin_menu') ?></b></a></li>
+                <?php } ?>
+                <li><a class="btn btn-mini" href="<?= site_url('user/account') ?>"><b><?= $this->lang->line('main_menu') ?></b></a></li>
+                <li><a class="btn btn-mini" href="<?= site_url('auth/logout') ?>"><b><?= $this->lang->line('logout') ?></b></a></li>
+            </ul>
+        </div>
+        <div class="modal-footer"></div>
+    </div>
+    <?php if ($this->session->userdata('user_role') == 1) {
         ?>
         <script>
             $(function() {
@@ -218,23 +237,5 @@
                 </fieldset>
             </form>
         </div>
-    <? } ?>
-    <div id="user-menu" class="modal hide fade" style="display: none; ">
-        <div class="modal-header">
-            <a href="#" class="close" data-dismiss="modal">&times;</a>
-            <h3><?= $this->lang->line('member') ?></h3>
-        </div>
-        <div class="modal-body">
-            <ul class="nav nav-pills nav-stacked" style="text-align: center">
-    <? if ($this->session->userdata('user_role') == 1) { ?>
-                    <li><a class="btn btn-mini" data-toggle="modal" href="#user-register"><b><?= $this->lang->line('register') ?></b></a></li>
-                    <li><a class="btn btn-mini" href="<?= site_url('admin/account') ?>"><b><?= $this->lang->line('admin_menu') ?></b></a></li>
-    <? } ?>
-                <li><a class="btn btn-mini" href="<?= site_url('user/account') ?>"><b><?= $this->lang->line('main_menu') ?></b></a></li>
-                <li><a class="btn btn-mini" href="<?= site_url('auth/logout') ?>"><b><?= $this->lang->line('logout') ?></b></a></li>
-            </ul>
-        </div>
-        <div class="modal-footer"></div>
-    </div>
-    <?
-}?>
+    <?php }
+} ?>

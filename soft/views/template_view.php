@@ -1,12 +1,12 @@
-<?
+<?php
 if ($this->input->post('ajax') != 1) {
     echo $header;
 }
 ?>
-<? if ($this->input->post('ajax') != 1) { ?>
+<?php if ($this->input->post('ajax') != 1) { ?>
     <body>
-    <? } ?>
-    <?
+    <?php } ?>
+    <?php
     if ($this->input->post('ajax') != 1) {
         $this->lang->load('navbar', $this->session->userdata('lang'));
         $this->load->view('navbar_view');
@@ -16,19 +16,19 @@ if ($this->input->post('ajax') != 1) {
         }
     }
     ?>
-    <? if ($this->input->post('ajax') != 1) { ?>
+    <?php if ($this->input->post('ajax') != 1) { ?>
         <div id="ajax-header" class="container">
-        <? } ?>
-        <?
+        <?php } ?>
+        <?php
         $this->load->view($component, $rs_component);
         if ($this->input->post('ajax') != 1) {
             $this->load->view('footer_view');
         }
         ?>
-        <? if ($this->input->post('ajax') != 1) { ?>
+        <?php if ($this->input->post('ajax') != 1) { ?>
         </div>
-    <? } ?>
-    <? if ($this->input->post('ajax') != 1) { ?>
+    <?php } ?>
+    <?php if ($this->input->post('ajax') != 1) { ?>
     </body>
     </html>
-<? } ?>
+<?php } ?>

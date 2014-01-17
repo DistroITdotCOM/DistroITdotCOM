@@ -1,4 +1,4 @@
-<?
+<?php
 $product_id = $product->product_id;
 $product_name = $product->product_name;
 $product_desc = $product->product_desc;
@@ -116,7 +116,7 @@ $product_price = $product->product_price;
         <div class="control-group">
             <label class="control-label" for="userfile"><?= $this->lang->line('product_pict') ?></label>
             <div class="controls">
-                <?
+                <?php
                 for ($key = 0; $key < 3; $key++) {
                     $picture = !empty($pict[$key]->pict_name) ? $pict[$key]->pict_name : '../no-img.jpg';
                     ?>
@@ -133,7 +133,7 @@ $product_price = $product->product_price;
                             <a href="#" class="btn fileupload-exists" data-dismiss="fileupload"><?= $this->lang->line('pict_remove') ?></a>
                         </div>
                     </div>
-                <? } ?>
+                <?php } ?>
                 <br>
                 <div id="sukses" class="label label-success"></div>
                 <div id="gagal" class="label label-important"></div>
